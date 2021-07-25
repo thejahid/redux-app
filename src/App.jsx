@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { incNumber, decNumber } from "./actions/index";
+
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const myState = useSelector((state) => state.changeTheNumber);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="App">
       <header className="App-header">
         <p>Redux App!</p>
         <div className="main">
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
+          <button type="button" onClick={() => dispatch(incNumber())}>
             +
           </button>
-          {count}
-          <button type="button" onClick={() => setCount((count) => count - 1)}>
+          {myState}
+          <button type="button" onClick={() => dispatch(decNumber())}>
             -
           </button>
         </div>
